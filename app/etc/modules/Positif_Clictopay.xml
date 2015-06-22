@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Positif_Clictopay>
+        <active>true</active>
+        <codePool>local</codePool>
+        </Positif_Clictopay>
+    </modules>
+</config>

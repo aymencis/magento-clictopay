@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<modules>
+    <Positif_Clictopay>
+    <version>1.0.1</version>
+    </Positif_Clictopay>
+</modules>
+<frontend>
+    <routers>
+        <clictopay>
+        <use>standard</use>
+        <args>
+        <module>Positif_Clictopay</module>
+        <frontName>clictopay</frontName>
+        </args>
+        </clictopay>
+    </routers>
+</frontend>
+<global>
+    <models>
+    <clictopay>
+    <class>Positif_Clictopay_Model</class>
+    </clictopay>
+    </models>
+    <helpers>
+    <clictopay>
+    <class>Positif_Clictopay_Helper</class>
+    </clictopay>
+    </helpers>
+    <blocks>
+    <clictopay>
+    <class>Positif_Clictopay_Block</class>
+    </clictopay>
+    </blocks>
+</global>
+<default>
+    <payment>
+        <clictopay>
+        <model>clictopay/standard</model>
+        <active>1</active>
+        <order_status>pending</order_status>
+        <title>SMT CLICTOPAY</title>
+        <payment_action>sale</payment_action>
+        <submit_url>http://196.203.11.74/paiement/</submit_url>
+        <merchant_id>Merchant id</merchant_id>
+        <allowspecific>0</allowspecific>
+        <sort_order>1</sort_order>
+        </clictopay>
+    </payment>
+</default>
+</config>
