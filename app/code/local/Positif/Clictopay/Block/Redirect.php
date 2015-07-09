@@ -33,7 +33,6 @@ class Positif_Clictopay_Block_Redirect extends Mage_Core_Block_Abstract
            $form->addField($field, 'hidden', array('name'=>$field, 'value'=>$value, 'size'=>200));
         }
         $form->addField('tcosubmit', 'submit', array('name'=>'tcosubmit'));
-		$form->removeField("form_key");
         $html = '<style> #tcosubmit {display:none;} </style>';
         $html .= '<div class="clictopay"><img src='.$this->getSkinUrl("images/logo_ctp.jpg").' alt=""/><img src='.$this->getSkinUrl("images/opc-ajax-loader.gif").' alt=""/></div>';
         $html .= $form->toHtml();
