@@ -34,9 +34,7 @@ class Positif_Clictopay_RedirectController extends Mage_Core_Controller_Front_Ac
         Mage::getSingleton('checkout/session')->getQuote()->setIsActive(false)->save();
         $order = Mage::getModel('sales/order');
         $order->loadByIncrementId($session->getLastRealOrderId());
-        
         $this->_redirect('checkout/onepage/success');
-        $order->sendNewOrderEmail();
         $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, true)->save();
         $order->setData('ext_order_id',$post['order_number'] );
         $order->save();

@@ -15,7 +15,7 @@ class Positif_Clictopay_NotificationController extends Mage_Core_Controller_Fron
         }
         $ref = $insMessage['Reference'];
         $act  = $insMessage['Action'];
-        $orderId = base64_decode(Mage::helper('core')->decrypt(hex2bin($ref)));
+        $orderId = $ref;
         if((int)$orderId == 0) {
             die('Hash Incorrect');
         }
@@ -26,6 +26,11 @@ class Positif_Clictopay_NotificationController extends Mage_Core_Controller_Fron
             case "DETAIL":
                 $montant = number_format($order->getGrandTotal(), 3, '.', '');
                 echo "Reference=$ref&Action=$act&Reponse=$montant";
+				try {
+					$order->sendNewOrderEmail();
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
                 break;
             case "ERREUR":
                 $order->setState(Mage_Sales_Model_Order::STATE_CANCELED, true)->addStatusHistoryComment('Error occured')->save();
@@ -49,8 +54,6 @@ class Positif_Clictopay_NotificationController extends Mage_Core_Controller_Fron
                         ->addObject($invoice)
                         ->addObject($invoice->getOrder());
                     $transactionSave->save();
-					$order->sendNewOrderEmail();
-					$order->setEmailSent(true);
 					$order->save();
 					$invoice->sendEmail ();
 					$invoice->setEmailSent ( true );

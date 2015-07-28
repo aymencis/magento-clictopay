@@ -30,15 +30,13 @@ public function getOrderPlaceRedirectUrl() {
 //get HTML form data
 public function getFormFields() {
     $order_id = $this->getCheckout()->getLastRealOrderId();
-    //$order_id = Mage::getSingleton('checkout/session')->getLastOrderId();
     $order    = Mage::getModel('sales/order')->loadByIncrementId($order_id);
     $amount   = round($order->getGrandTotal(), 2);
     $amount	  = number_format($amount,2);
     $currency_code = $order->getOrderCurrencyCode();
-    $encryptedId = bin2hex(Mage::helper('core')->encrypt(base64_encode($order_id)));
     $tcoFields = array();
     $tcoFields['affilie'] = $this->getConfigData('merchant_id');
-    $tcoFields['reference'] = $encryptedId;
+    $tcoFields['reference'] = $order_id;
     $tcoFields['devise'] = $currency_code;
     $tcoFields['montant'] = $amount;
     return $tcoFields;
