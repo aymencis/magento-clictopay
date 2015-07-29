@@ -37,8 +37,7 @@ class Positif_Clictopay_RedirectController extends Mage_Core_Controller_Front_Ac
         $this->_redirect('checkout/onepage/success');
         $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, true)->save();
         $order->setData('ext_order_id',$post['order_number'] );
-        $order->save();
-        
+        $order->save();        
     }
     public function cartAction() {
         $session = Mage::getSingleton('checkout/session');
@@ -53,3 +52,4 @@ class Positif_Clictopay_RedirectController extends Mage_Core_Controller_Front_Ac
         $this->_redirect('checkout/cart');
     }
 }
+
