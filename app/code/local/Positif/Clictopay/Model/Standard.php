@@ -31,14 +31,14 @@ public function getOrderPlaceRedirectUrl() {
 public function getFormFields() {
     $order_id = $this->getCheckout()->getLastRealOrderId();
     $order    = Mage::getModel('sales/order')->loadByIncrementId($order_id);
-    $amount   = round($order->getGrandTotal(), 2);
-    $amount	  = number_format($amount,2);
+    $amount   =(float)$order->getGrandTotal();
+	$amount = sprintf('%.3f', $amount);
     $currency_code = $order->getOrderCurrencyCode();
     $tcoFields = array();
     $tcoFields['affilie'] = $this->getConfigData('merchant_id');
-    $tcoFields['reference'] = $order_id;
-    $tcoFields['devise'] = $currency_code;
-    $tcoFields['montant'] = $amount;
+    $tcoFields['Reference'] = $order_id;
+    $tcoFields['Devise'] = $currency_code;
+    $tcoFields['Montant'] = $amount;
     return $tcoFields;
 }
 }
