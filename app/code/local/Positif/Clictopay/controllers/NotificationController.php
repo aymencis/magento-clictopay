@@ -48,7 +48,8 @@ class Positif_Clictopay_NotificationController extends Mage_Core_Controller_Fron
                     }
                     $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_OFFLINE);
                     $invoice->register();
-					$order->addStatusHistoryComment('Facturé par CII', false);
+					$order->addStatusHistoryComment('Invoiced', false);
+					$order->addStatusHistoryComment('AUTORISATION CODE : '.$insMessage['Param'], false);
 					
                     $transactionSave = Mage::getModel('core/resource_transaction')
                         ->addObject($invoice)
