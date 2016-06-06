@@ -1,7 +1,7 @@
 # magento-clictopay
 Clictopay - Magento 1 payment gateway module
 
-Compatible ( Magento CE 1.8 - 1.9.X)
+Compatible ( Magento CE 1.8.X - 1.9.X)
 
 URLS : 
 
