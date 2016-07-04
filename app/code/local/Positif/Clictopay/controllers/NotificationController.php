@@ -26,17 +26,18 @@ class Positif_Clictopay_NotificationController extends Mage_Core_Controller_Fron
             case "DETAIL":
                 $montant = number_format($order->getGrandTotal(), 3, '.', '');
                 echo "Reference=$ref&Action=$act&Reponse=$montant";
-				try {
-					$order->sendNewOrderEmail();
-				} catch (Exception $e) {
-					echo $e->getMessage();
-				}
+				
                 break;
             case "ERREUR":
                 $order->setState(Mage_Sales_Model_Order::STATE_CANCELED, true)->addStatusHistoryComment('Error occured')->save();
                  echo "Reference=$ref&Action=$act&Reponse=OK";
                 break;
             case "ACCORD":
+            	try {
+					$order->sendNewOrderEmail();
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
                 $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING, true)->addStatusHistoryComment('Order passed')->save();
                 try {
                     if(!$order->canInvoice()) {
