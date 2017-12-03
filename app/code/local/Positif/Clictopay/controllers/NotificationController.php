@@ -47,7 +47,7 @@ class Positif_Clictopay_NotificationController extends Mage_Core_Controller_Fron
                     if (!$invoice->getTotalQty()) {
                         Mage::throwException(Mage::helper('core')->__('Cannot create an invoice without products.'));
                     }
-                    $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_OFFLINE);
+                    $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE);
                     $invoice->register();
 					$order->addStatusHistoryComment('Invoiced', false);
 					$order->addStatusHistoryComment('AUTORISATION CODE : '.$insMessage['Param'], false);
